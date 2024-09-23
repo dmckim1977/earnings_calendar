@@ -123,13 +123,16 @@ def format_earnings_html(
 
 
 def newsletter_earnings(earnings_date):
-    am, pm = get_earnings_from_stocktwits_api(publish_date=earnings_date)
-    am_list, am_others = rank_and_sort_earnings(am)
-    pm_list, pm_others = rank_and_sort_earnings(pm)
-    am_earnings_str, pm_earnings_str = format_earnings_html(
-        am_list, am_others, pm_list, pm_others
-    )
-    return am_earnings_str, pm_earnings_str
+    try:
+        am, pm = get_earnings_from_stocktwits_api(publish_date=earnings_date)
+        am_list, am_others = rank_and_sort_earnings(am)
+        pm_list, pm_others = rank_and_sort_earnings(pm)
+        am_earnings_str, pm_earnings_str = format_earnings_html(
+            am_list, am_others, pm_list, pm_others
+        )
+        return am_earnings_str, pm_earnings_str
+    except:
+        return "No notable earnings", "No notable earnings"
 
 
 def stocktwits_earnings_dates(publish_date):
