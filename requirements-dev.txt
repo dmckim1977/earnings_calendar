@@ -1,0 +1,4 @@
+flit
+pip-tools
+pytest
+python-dotenv
